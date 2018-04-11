@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="app.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-light">
+
+    <div class="container" style="padding-top: 80px;" action="" method="get">
+        <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <!-- <strong class="d-inline-block mb-2 text-primary">Create a new multisig wallet!</strong> -->
+                  <h3 class="mb-0">
+                    Create a new multisig wallet!
+                  </h3>
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName">CA 1</label>
+                        <input id="ca1" type="text" name="address1" class="form-control">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName">CA 2</label>
+                        <input id="ca2" type="text" name="address2" class="form-control">
+                      </div>
+                    </div>
+                  <button class="btn btn-primary btn-lg btn-block" type="button" value="Deploy" onclick="return createContract();">Deploy Wallet</button>
+                  <!-- <div class="mb-1 text-muted">Nov 12</div> -->
+                  <p class="card-text mb-auto">Please wait while contract is deployed, dont close the window.</p>
+                  <p class="card-text mb-auto"><span id='address'>Contract Addess: address will be shown here after deploying....</span></p>
+                  <!-- <a href="#">Continue reading</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <!-- <strong class="d-inline-block mb-2 text-primary">Create a new multisig wallet!</strong> -->
+                  <h3 class="mb-0">
+                    Create a new account
+                  </h3>
+                  <button class="btn btn-primary btn-lg btn-block" type="button" value="createAccount" onclick="return createAccount();">Create Account</button>
+                  <!-- <div class="mb-1 text-muted">Nov 12</div> -->
+                  <p class="card-text mb-auto">**Please wait while account created, dont close the window.</p>
+                  <!-- <a href="#">Continue reading</a> -->
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <!-- <strong class="d-inline-block mb-2 text-primary">Create a new multisig wallet!</strong> -->
+                  <h3 class="mb-0">
+                    Submit a new transaction
+                  </h3>
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName">Wallet contract address:</label>
+                        <input name="st_ca" id="st_ca" type="text" class="form-control">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName">Token destination address:</label>
+                        <input name="st_da" id="st_da" type="text" class="form-control">
+                      </div>
+                    </div>
+                  <div class="mb-3">
+                        <label for="firstName">Amount to Send:</label>
+                        <input name="st_atm" id="st_atm" type="number" class="form-control">
+                      </div>
+                  <button class="btn btn-primary btn-lg btn-block" name="buttonExecute" onclick="submitTransaction()" type="button" value="submit tx">Submit Transaction</button>
+                  <!-- <div class="mb-1 text-muted">Nov 12</div> -->
+                  <span id="cst_info">please wait for Tranx id generate</span>
+                  <p class="card-text mb-auto">**Fill in the above details to send transcation</p>
+                  <!-- <a href="#">Continue reading</a> -->
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <!-- <strong class="d-inline-block mb-2 text-primary">Create a new multisig wallet!</strong> -->
+                  <h3 class="mb-0">
+                    Confirm a submitted transaction
+                  </h3>
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName">Wallet contract address:</label>
+                        <input name="ct_ca" id="ct_ca" type="text" class="form-control">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName">Transaction Id:</label>
+                        <input name="tID" id="tID" type="number" class="form-control">
+                      </div>
+                    </div>
+                  <button class="btn btn-primary btn-lg btn-block" name="buttonExecute" onclick="confirmTransaction()" type="button" value="confirm tx">Confirm Transaction</button>
+                  <!-- <div class="mb-1 text-muted">Nov 12</div> -->
+                  <p class="card-text mb-auto">**Fill in the above details to send transcation</p>
+                  <!-- <a href="#">Continue reading</a> -->
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+
+    <!-- <form action="" method="get">
+        <H2>Create a new multisig wallet!</H2>
+        CA 1:
+        <input id="ca1" type="text" name="address1">
+        <br />
+        CA 2:
+        <input id="ca2" type="text" name="address2">
+        <br><br>
+        <input type="button" value="Deploy" onclick="return createContract();">
+        <label>Please wait while contract is deployed, dont close the window. </label>
+        <p>Contract Addess: <span id="address">address will be shown here after deploying....</span></p>
+
+        <br><br>
+
+        <H2>Submit a new transaction</H2>
+        Fill the details to send transcation <br><br>
+        Wallet contract address: <input name="st_ca" id="st_ca" type="text" /><br><br>
+        token destination address: <input name="st_da" id="st_da" type="text" /><br><br>
+        amoint to send: <input name="st_atm" id="st_atm" type="number" /><br><br><br>
+        <input name="buttonExecute" onclick="submitTransaction()" type="button" value="submit tx" />
+
+        <span id="cst_info"></span>
+	<br><br>
+        <H2>Confirm a submitted tx:</H2>
+        Fill the details to confirm transcation<br><br>
+        Wallet contract address: <input name="ct_ca" id="ct_ca" type="text" /><br><br>
+        Tx ID to be confirmed:<input name="tID" id="tID" type="number" /><br><br><br>
+        <input name="buttonExecute" onclick="confirmTransaction()" type="button" value="confirm tx" />
+        <br /><br/><br/>
+
+        <H2>Create a account</H2>
+
+        <input type="button" value="createAccount" onclick="return createAccount();">
+        <label>Please wait while account created, dont close the window. </label>
+        <br><br>
+        <br /><br/><br/> -->
+
+        <!-- <H2>Get account</H2>
+
+        <input type="button" value="createAccount" onclick="return getAccounts();">
+        <label>Please wait while account created, dont close the window. </label>
+        <br><br>
+        br /><br/><br/>
+
+        <H2>Generate Address</H2>
+
+        <input type="button" value="createAccount" onclick="return generateAddress();">
+        <label>Please wait while account created, dont close the window. </label>
+        <br><br> -->
+<!--     </form> -->
+</body>
+</html>
