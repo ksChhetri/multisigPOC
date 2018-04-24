@@ -101,6 +101,7 @@ function submitTransaction() {
        });
 }
 
+
 function confirmTransaction() {
       var ct_ca = document.getElementById('ct_ca').value;
       var myAddress = web3.eth.accounts[0];
