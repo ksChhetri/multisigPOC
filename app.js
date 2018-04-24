@@ -93,7 +93,7 @@ function submitTransaction() {
 		if (err) {
                    return;
                 }
-                var id = result;
+                var id = result.args.transactionId.c[0];
 	        console.log(error, result);
 	        document.getElementById('cst_info').innerHTML = "last submitted tx id is (it might take sometime to get latest submitted tx id please wait): " + id;
 	    });
